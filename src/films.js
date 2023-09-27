@@ -1,12 +1,21 @@
+const movies = require("./data");
+
 // Exercise 1: Get the array of all directors.
-function getAllDirectors(array) {
-  let result =  ???;
+function getAllDirectors(movies) {
+  let result =  movies.map(pelicula=>pelicula.director);
+
   console.log("EXERCICE 1 ->", result);
   return result;
 }
 
+
+
 // Exercise 2: Get the films of a certain director
 function getMoviesFromDirector(array, director) {
+  const pelpDirector= array.filter(pelicula=>pelicula.director===director);
+  
+  console.log("EXERCICE 2 ->", pelpDirector);
+  return pelpDirector;
  
 }
 
