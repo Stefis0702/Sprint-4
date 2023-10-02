@@ -40,8 +40,8 @@ function moviesAverageOfDirector(array,director) {
 function orderAlphabetically(array) {
   let pelicula =  array.map(pelicula=>pelicula.title);
   const ordenAlpha= pelicula.sort((a,b)=>{
-    const peliculaA= a.title.toLowerCase();
-    const peliculaB= b.title.toLowerCase();
+    const peliculaA= a.toLowerCase();
+    const peliculaB= b.toLowerCase();
     if(peliculaA<peliculaB){
       return -1;
     }
@@ -51,10 +51,11 @@ function orderAlphabetically(array) {
     return 0;
 
   });
+  const vintTitle= ordenAlpha.slice(0,20);
 
-  console.log("EXERCICE 4 ->",ordenAlpha.splice(0,20));
+  console.log("EXERCICE 4 ->",vintTitle);
 
-  return  ordenAlpha.splice(0,20);
+  return  vintTitle;
 
   
 }
