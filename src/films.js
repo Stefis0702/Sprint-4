@@ -24,9 +24,8 @@ function moviesAverageOfDirector(array,director) {
 
  
   const directores= getMoviesFromDirector(array, director)
-  const totalScore = directores.reduce((acu, movie) => acu += movie.score, 0);
-  let averageScore = totalScore / directores.length;
-  averageScore=parseFloat(averageScore)
+  
+  let averageScore = calculateMedia(directores);
 
 
   console.log("EXERCICE 3 -> ", averageScore);
@@ -51,7 +50,7 @@ function orderAlphabetically(array) {
     return 0;
 
   });
-  const vintTitle= ordenAlpha.slice(0,20);
+  const vintTitle= ordenAlpha.slice(0,20); 
 
   console.log("EXERCICE 4 ->",vintTitle);
 
@@ -61,14 +60,78 @@ function orderAlphabetically(array) {
 }
 
 // Exercise 5: Order by year, ascending
-function orderByYear() {
+function orderByYear(pelicula) {
+
+  const ordenAsc= pelicula.slice();// retorna una copia del array de peliculas en uno nuevo asi no modifico el original
+   ordenAsc.sort((a,b)=>{
+  
+    if(a.year===b.year){   //si el año es el mismo  entonces que me lo compare por titulo
+      return a.title.localeCompare(b.title);
+    }
+    return a.year - b.year;  
+    
+
+  });
+  
+
+  console.log("EXERCICE 6 ->",ordenAsc);
+
+  return  ordenAsc;
+
+  
+
 
 }
 
 // Exercise 6: Calculate the average of the movies in a category
-function moviesAverageByCategory() {
+function moviesAverageByCategory(peliculas,genreSearch) {
+  
+ 
+  const pelpCategory= peliculas.filter(pelicula=>pelicula.genre==genreSearch);
+  
+  if (pelpCategory.length === 0) {
+    return 0.0;
+  }
+
+   const movieCategory= calculateMedia(pelpCategory);
+
+  console.log("EXERCICE 6 ->", movieCategory);
+
+  return movieCategory;
+  
+  
 
 }
+ function calculateMedia (array){
+  // if (array.length === 0) {
+  //   return 0.0;
+  // }
+  // const totalScore = array.reduce((acu, movie) =>{
+  //  acu + movie.score, 0});
+
+  // let averageScore = totalScore / array.length;
+
+  // return parseFloat(averageScore.toFixed(2)); ;
+  const totalScore = array.reduce((acumulador, movie) => {
+    if (typeof movie.score === 'number' && movie.score !== 0) {
+      return acumulador + movie.score;
+    } else {
+      return acumulador;
+    }
+  }, 0);
+
+  const validMoviesCount = array.filter((movie) => typeof movie.score === 'number' && movie.score !== 0).length;
+
+  if (validMoviesCount === 0) {
+    return 0.0;
+  }
+
+  const averageScore = totalScore / validMoviesCount;
+
+  return parseFloat(averageScore.toFixed(2));
+}
+
+
 
 // Exercise 7: Modify the duration of movies to minutes
 function hoursToMinutes() {
