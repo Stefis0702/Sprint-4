@@ -103,15 +103,7 @@ function moviesAverageByCategory(peliculas,genreSearch) {
 
 }
  function calculateMedia (array){
-  // if (array.length === 0) {
-  //   return 0.0;
-  // }
-  // const totalScore = array.reduce((acu, movie) =>{
-  //  acu + movie.score, 0});
-
-  // let averageScore = totalScore / array.length;
-
-  // return parseFloat(averageScore.toFixed(2)); ;
+ 
   const totalScore = array.reduce((acumulador, movie) => {
     if (typeof movie.score === 'number' && movie.score !== 0) {
       return acumulador + movie.score;
