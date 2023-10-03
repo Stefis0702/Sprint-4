@@ -116,6 +116,7 @@ function moviesAverageByCategory(peliculas,genreSearch) {
 
   if (validMoviesCount === 0) {
     return 0.0;
+    
   }
 
   const averageScore = totalScore / validMoviesCount;
